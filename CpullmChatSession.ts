@@ -18,6 +18,26 @@ class CpullmChatSession implements IChatSession {
             return response;
         });
     }
+
+    public push(type: "user" | "model", message: string) {
+        const chatHistory = this.session.getChatHistory();
+        if (type === "user") {
+            chatHistory.push({
+                type: "user",
+                text: message
+            });
+        } else {
+            chatHistory.push({
+                type: "model",
+                response: [
+                    message
+                ]
+            });
+        }
+        this.session.setChatHistory(chatHistory);
+
+        
+    }
 }
 
 export { CpullmChatSession };

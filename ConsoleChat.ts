@@ -1,16 +1,18 @@
 import { IChatSession } from "./IChatSession.ts";
 import { CpullmChatSession } from "./CpullmChatSession.ts";
+import { ILMWorker } from "./ILMWorker.ts";
+import { CpuLMWorker } from "./CpuLMWorker.ts";
 
 
 class ConsoleChat {
-    private chatllm: IChatSession;
-    constructor(chatllm: IChatSession)
+    private chatllm: ILMWorker;
+    constructor(lmworker: ILMWorker)
     {
-        this.chatllm = chatllm;
+        this.chatllm = lmworker;
     }
 
     public static async create(): Promise<ConsoleChat> {
-        const console_chat = new ConsoleChat(await CpullmChatSession.create());
+        const console_chat = new ConsoleChat(await CpuLMWorker.create());
         return console_chat;
     }
 
@@ -22,7 +24,7 @@ class ConsoleChat {
                 process.exit(0);
             }
 
-            const answer = await this.chatllm.prompt(query);
+            const answer = await this.chatllm.generate(query);
             console.log("Assistant: ", answer);
         }
     }
