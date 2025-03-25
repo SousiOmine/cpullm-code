@@ -14,7 +14,7 @@ class LlamaCppModelSingleton {
         this.context = context;
     }
 
-    public static async getInstance(modelPath: string = ""): Promise<LlamaCppModelSingleton> {
+    public static async getInstance(modelPath: string = "./model/sarashina2.2-3b-instruct-v0.1-Pythonic-FunctionCall.Q5_K_M.gguf"): Promise<LlamaCppModelSingleton> {
         LlamaCppModelSingleton.modelPath = modelPath;
         if (!LlamaCppModelSingleton.instance || LlamaCppModelSingleton.modelPath != modelPath) {
             const llama = await getLlama();
