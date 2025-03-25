@@ -1,3 +1,5 @@
+# このreadmeはOpenHandsにお試しで書かせたやつだから結構でたらめ言っています
+
 # cpullm-code - ローカルLLM版Claude Codeプロトタイプ
 
 ## プロジェクト概要
